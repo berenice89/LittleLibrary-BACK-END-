@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
 app.use(express.json());
 app.use(
@@ -7,9 +8,10 @@ app.use(
     extended: true,
   })
 );
+app.use(cors());
 
 app.use("/books", require("./routes/books"));
 
-app.listen(3000, () => {
-  console.log("API disponible sur localhost:3000");
+app.listen(5050, () => {
+  console.log("API disponible sur localhost:5050");
 });
