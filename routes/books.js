@@ -52,6 +52,19 @@ router.post("/", (req, res) => {
   });
 });
 
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  db.query("DELETE FROM book WHERE id=?", [id], (err, results) => {
+    if (err) {
+      res.status(500).send("Erreur 500, pb SQL");
+      console.log(err.sql);
+      console.log(err.message);
+      return;
+    }
+    res.send(results);
+  });
+});
+
 router.put("/:id", (req, res) => {
   const id = req.params.id;
   db.query("UPDATE book SET ? WHERE id=?", [req.body, id], (err, results) => {
